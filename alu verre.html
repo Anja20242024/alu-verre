@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="mg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alu Verre</title>
+  <style>
+    /* Animation ho an'ny soratra */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f4f4f4;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    nav {
+      background-color: #2c3e50;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      animation: fadeInDown 1.5s ease-out;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 20px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+      animation: fadeInDown 2s ease-out;
+    }
+
+    .header {
+      text-align: center;
+      padding: 40px 20px 10px;
+      animation: fadeInDown 1.5s ease-out;
+    }
+
+    .header h1 {
+      font-size: 48px;
+      color: #2c3e50;
+      margin: 0;
+      text-shadow: 2px 2px #ccc;
+      animation: fadeInDown 2s ease-out;
+    }
+
+    .btn-ajouter {
+      margin: 30px auto;
+      display: block;
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      animation: bounce 1s infinite;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 8px;
+      animation: fadeInDown 1.5s ease-out;
+    }
+
+    .plus-btn {
+      float: right;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      font-size: 20px;
+      cursor: pointer;
+      animation: bounce 1s infinite;
+    }
+
+    .section {
+      margin-top: 20px;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    .section button {
+      margin: 5px;
+      padding: 8px 12px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      animation: bounce 1s infinite;
+    }
+
+    .form-container {
+      margin-top: 20px;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    .form-container input {
+      display: block;
+      margin: 10px 0;
+      padding: 8px;
+      width: 95%;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    .list-container {
+      margin-top: 15px;
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-radius: 6px;
+      min-height: 60px;
+      animation: fadeInDown 1s ease-out;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a id="asaRehetraBtn">Asa rehetra</a>
+  <a href="#">Calculer devis</a>
+</nav>
+
+<div class="header">
+  <h1>Alu Verre</h1>
+</div>
+
+<button class="btn-ajouter" id="ajouterBtn">+ Ampidiro Asa Vaovao</button>
+
+<!-- Modal ho an'ny Asa vaovao -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <h2>Asa vaovao <button class="plus-btn" onclick="openKarazana()">+</button></h2>
+
+    <div id="karazanaSection" class="section" style="display:none">
+      <button onclick="selectKarazana('Fenetre')">Fenetre</button>
+      <button onclick="selectKarazana('Porte')">Porte</button>
+      <button onclick="selectKarazana('Rideaux Metalique')">Rideaux Metalique</button>
+      <button onclick="selectKarazana('Vitrine')">Vitrine</button>
+      <button onclick="selectKarazana('Inox')">Inox</button>
+    </div>
+
+    <div id="fenetreTypes" class="section" style="display:none">
+      <button onclick="selectFenetreType('Coulisante')">Coulisante</button>
+      <button onclick="selectFenetreType('Ouvrante')">Ouvrante</button>
+      <button onclick="selectFenetreType('Projetant')">Projetant</button>
+    </div>
+
+    <div id="coulisanteOptions" class="section" style="display:none">
+      <button onclick="selectCoulisante('Promotion')">Promotion</button>
+      <button onclick="selectCoulisante('Premier choix')">Premier choix</button>
+      <button onclick="selectCoulisante('Deuxieme choix')">Deuxieme choix</button>
+    </div>
+
+    <div id="colorOptions" class="section" style="display:none">
+      <button onclick="selectColor('Mainty')">Mainty</button>
+      <button onclick="selectColor('Fotsy')">Fotsy</button>
+      <button onclick="selectColor('Maron')">Maron</button>
+      <button onclick="selectColor('Faux Bois')">Faux Bois</button>
+      <button onclick="selectColor('Gris Maizina')">Gris Maizina</button>
+    </div>
+
+    <div id="formSection" class="form-container" style="display:none">
+      <input type="text" id="clientName" placeholder="Anaran'ny Client" />
+      <input type="date" id="dateCommande" />
+      <input type="date" id="dateLivraison" />
+      <input type="number" id="hauteur" placeholder="Hauteur (cm)" />
+      <input type="number" id="largeur" placeholder="Largeur (cm)" />
+      <input type="number" id="quantity" placeholder="Isany" />
+      <button onclick="saveAsa()">Tehirizo</button>
+    </div>
+
+    <div id="asaListContainer" class="list-container">
+      <em>Tsy misy asa voatahiry</em>
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById("modal");
+  const ajouterBtn = document.getElementById("ajouterBtn");
+  const asaRehetraBtn = document.getElementById("asaRehetraBtn");
+  const asaListContainer = document.getElementById("asaListContainer");
+
+  const karazanaSection = document.getElementById("karazanaSection");
+  const fenetreTypes = document.getElementById("fenetreTypes");
+  const coulisanteOptions = document.getElementById("coulisanteOptions");
+  const colorOptions = document.getElementById("colorOptions");
+  const formSection = document.getElementById("formSection");
+
+  let asaList = [];
+
+  let karazana = "";
+  let fenetreType = "";
+  let coulisanteType = "";
+  let couleur = "";
+
+  ajouterBtn.onclick = () => {
+    modal.style.display = "block";
+  };
+
+  window.onclick = (e) => {
+    if (e.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+
+  function openKarazana() {
+    karazanaSection.style.display = "block";
+  }
+
+  function selectKarazana(k) {
+    karazana = k;
+    if (k === "Fenetre") {
+      fenetreTypes.style.display = "block";
+    } else {
+      formSection.style.display = "block";
+    }
+  }
+
+  function selectFenetreType(type) {
+    fenetreType = type;
+    coulisanteOptions.style.display = "block";
+  }
+
+  function selectCoulisante(type) {
+    coulisanteType = type;
+    colorOptions.style.display = "block";
+  }
+
+  function selectColor(c) {
+    couleur = c;
+    formSection.style.display = "block";
+  }
+
+  function saveAsa() {
+    const client = document.getElementById("clientName").value;
+    const dateCommande = document.getElementById("dateCommande").value;
+    const dateLivraison = document.getElementById("dateLivraison").value;
+    const hauteur = document.getElementById("hauteur").value;
+    const largeur = document.getElementById("largeur").value;
+    const quantity = document.getElementById("quantity").value;
+
+    const newAsa = {
+      client,
+      dateCommande,
+      dateLivraison,
+      hauteur,
+      largeur,
+      quantity,
+      karazana,
+      fenetreType,
+      coulisanteType,
+      couleur,
+    };
+
+    asaList.push(newAsa);
+    renderAsaList();
+    modal.style.display = "none";
+  }
+
+  function renderAsaList() {
+    asaListContainer.innerHTML = "";
+    asaList.forEach((asa, index) => {
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <strong>Asa ${index + 1}</strong><br>
+        Client: ${asa.client}<br>
+        Karazana: ${asa.karazana}<br>
+        Fenetre Type: ${asa.fenetreType}<br>
+        Coulisante Type: ${asa.coulisanteType}<br>
+        Couleur: ${asa.couleur}<br>
+        Hauteur: ${asa.hauteur} cm<br>
+        Largeur: ${asa.largeur} cm<br>
+        Isany: ${asa.quantity}<br>
+        Date Commande: ${asa.dateCommande}<br>
+        Date Livraison: ${asa.dateLivraison}<br>
+        <br>
+      `;
+      asaListContainer.appendChild(div);
+    });
+  }
+</script>
+
+</body>
+</html>
